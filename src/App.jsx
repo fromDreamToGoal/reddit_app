@@ -5,7 +5,7 @@ import Subreddits from './features/Subreddits/Subreddits.jsx';
 
 function App() {
   return (
-    <div className="App">
+    <div className="container">
       <Header />  
       <Main />
       <Subreddits />

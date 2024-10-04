@@ -1,12 +1,13 @@
 
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #ff4500;
-    color: #fff;
-  }
+  grid-area: header;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ padding: 10px;
+ background-color: #f8f9fa;
+ border-bottom: 2px solid #dee2e6;
+}
   
   .logo-container {
     display: flex;
