@@ -1,9 +1,9 @@
 import React from 'react';
-import './Main.css';
+import './Card.css';
 
-const Main = () => {
-  return (
-    <div className="main-container">
+const Card = () => {
+    return (
+        <div className="card">
       {/* Счётчик голосов */}
       <div className="vote-section">
         <button className="upvote">⬆</button>
@@ -18,7 +18,7 @@ const Main = () => {
         </p>
         
         <img 
-          src="https://image-placeholder-url" 
+          src="https://images.unsplash.com/photo-1719937206094-8de79c912f40?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
           alt="Post visual"
           className="post-image"
         />
@@ -40,7 +40,7 @@ const Main = () => {
         </div>
       </div>
     </div>
-  );
-}
+    );
+};
 
-export default Main;
+export default Card;

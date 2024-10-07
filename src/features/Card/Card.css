@@ -1,0 +1,11 @@
+.card {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-areas: 
+        "vote-section post-section"
+        "vote-section post-section"
+        "vote-section post-section"
+        "vote-section comment-section";
+    gap: 10px;
+}
