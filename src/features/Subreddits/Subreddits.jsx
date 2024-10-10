@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSubreddits } from '../../store/subRedditSlice';
-import './Subreddits.css'; // Импорт стилей
+import { fetchPosts } from '../../store/redditSlice';
+import './Subreddits.css';
 
 const Subreddits = () => {
   const dispatch = useDispatch();
@@ -10,6 +11,10 @@ const Subreddits = () => {
   useEffect(() => {
     dispatch(fetchSubreddits());
   }, [dispatch]);
+
+  const handleSubredditClick = (subredditName) => {
+    dispatch(fetchPosts(subredditName));
+  };
 
   if(loading) {
     return <div>Loading...</div>;
@@ -25,7 +30,10 @@ const Subreddits = () => {
       <ul className="subreddits-list">
         {subreddits.map((subreddit) => (
           <li key={subreddit.id} className="subreddit-item">
-            <button className="subreddit-button">
+            <button 
+              className="subreddit-button"
+              onClick={() => handleSubredditClick(subreddit.display_name)}
+            >
             <img src={
                   subreddit.icon_img ||
                   `https://api.adorable.io/avatars/25/${subreddit.display_name}`
