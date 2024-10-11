@@ -1,15 +1,16 @@
-import axios from 'axios';
-
 // Базовый URL для запросов к Reddit API
 const BASE_URL = 'https://www.reddit.com';
 
-// Функция для получения постов из сабреддита
+
 export const fetchSubredditPosts = async (subreddit) => {
   try {
-    const response = await axios.get(`${BASE_URL}/r/${subreddit}.json`);
-    return response.data.data.children.map((post) => post.data); // Маппинг данных
-  } catch (error) {
-    throw new Error('Не удалось получить посты из Reddit');
+    const response = await fetch(`${BASE_URL}/r/${subreddit}.json`);
+    const json = await response.json();
+    console.log(json);
+    return json.data.children.map((post) => post.data);
+  }
+  catch (error) {
+    console.log('Failed to fetch posts:', error);
   }
 };
 
