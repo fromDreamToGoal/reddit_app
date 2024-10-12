@@ -2,12 +2,31 @@ import React from 'react';
 import './Card.css';
 
 const Card = ({ post }) => {
+  const calculatePostDate = (created) => {
+    // Если значение меньше 60 — это минуты
+    if (created < 60) {
+      return `${created} minutes ago`;
+    } 
+    // Если значение меньше 24*60 — это часы
+    else if (created < 24 * 60) {
+      const hours = Math.floor(created / 60);
+      return `${hours} hours ago`;
+    } 
+    // Всё, что больше — это дни
+    else {
+      const days = Math.floor(created / (24 * 60));
+      return `${days} days ago`;
+    }
+  };
+
+  const postDate = calculatePostDate(post.created);
+
     return (
         <div className="card">
       {/* Счётчик голосов */}
       <div className="vote-section">
         <button className="upvote">⬆</button>
-        <div className="vote-count">{post.ups}</div>
+        <div className="vote-count">{post.voteCount}</div>
         <button className="downvote">⬇</button>
       </div>
 
@@ -16,28 +35,25 @@ const Card = ({ post }) => {
         <p className="post-text">
           {post.title}
         </p>
+        <p>{post.text}</p>
         
-        {post.thumbnail && post.thumbnail !== 'self' && (
-          <img 
-            src={post.thumbnail} 
-            alt="Post visual"
-            className="post-image"
-          />
+        {post.image && post.image !== 'self' && post.image !== 'default' && (
+          <img src={post.image} alt="Post visual" className="post-image" />
         )}
 
         {/* Информация о пользователе и комментарии */}
         <div className="comment-section">
           <div className="user-info">
           <img 
-              src={`https://www.redditstatic.com/avatars/avatar_default_${post.author_flair_text || '02'}.png`} 
+              src={post.userAvatar}
               alt="User avatar" 
               className="user-avatar"
             />
-            <span className="user-name">{post.author}</span>
-            <span className="post-time">{new Date(post.created_utc * 1000).toLocaleTimeString()}</span>
+            <span className="user-name">{post.userName}</span>
+            <span className="post-time">{postDate}</span>
           </div>
           <div className="comment-count">
-            <span>💬</span> {post.num_comments}
+            <span>💬</span> {post.comments}
           </div>
         </div>
       </div>
