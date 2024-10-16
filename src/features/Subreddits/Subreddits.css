@@ -47,3 +47,8 @@
   .subreddit-button:hover {
     background-color: #e0e0e0;
   }
+
+  .selected .subreddit-button {
+    background-color: #d0d0d0;
+    font-weight: bold;
+  }

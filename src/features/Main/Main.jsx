@@ -8,8 +8,8 @@ const Main = () => {
   const dispatch = useDispatch();
   const selectedSubreddit = useSelector((state) => state.reddit.selectedSubreddit);
   const posts = useSelector((state) => state.reddit.posts);
-  const isLoading = useSelector((state) => state.reddit.isLoading);
-  const error = useSelector((state) => state.reddit.error);
+  const isLoading = useSelector((state) => state.reddit.status === 'loading');
+  const error = useSelector((state) => state.reddit.status === 'failed');
 
   useEffect(() => {
     dispatch(fetchPosts(selectedSubreddit));
