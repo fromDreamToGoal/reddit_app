@@ -31,6 +31,22 @@
     transition: background-color 0.3s;
     width: -webkit-fill-available;
   }
+
+  .subreddit-button:hover {
+    background-color: #FFF4BD;
+  }
+
+  .subreddit-button:active {
+    background-color: #47807E;
+  }
+
+  .selected .subreddit-button {
+    background-color:#DAFFFD;
+    font-weight: bold;
+    border-left-style: solid;
+    border-left-width: 8px;
+    border-left-color: #FF5224;
+  }
   
   .subreddit-icon {
     width: 25px;
@@ -42,13 +58,4 @@
   .subreddit-name {
     font-size: 1.1em;
     font-weight: normal;
-  }
-
-  .subreddit-button:hover {
-    background-color: #e0e0e0;
-  }
-
-  .selected .subreddit-button {
-    background-color: #d0d0d0;
-    font-weight: bold;
   }
