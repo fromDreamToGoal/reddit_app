@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchPosts } from '../../store/redditSlice';
 import './Main.css';
 import Card from "../Card/Card.jsx";
+import CardLoading from '../Card/CardLoading.jsx';
+import { AnimatedList } from 'react-animated-list';
+import { getRandomInteger } from '../../utils/index.js';
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -16,7 +19,9 @@ const Main = () => {
   }, [dispatch, selectedSubreddit]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <AnimatedList animation="zoom">
+      {Array(getRandomInteger(2,5)).fill(<CardLoading />)}
+    </AnimatedList>;
   }
 
   if (error) {

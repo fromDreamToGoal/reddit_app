@@ -16,3 +16,10 @@ export const calculatePostDate = (created) => {
     }
   };
 
+  export function getRandomInteger(min, max) {
+    // Убедимся, что значения min и max целые числа
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    // Генерация случайного числа в диапазоне, включая min и max
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
