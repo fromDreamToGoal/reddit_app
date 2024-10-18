@@ -6,9 +6,9 @@ import Subreddits from './features/Subreddits/Subreddits.jsx';
 function App() {
   return (
     <div className="container">
-      <Header />  
-      <Main />
-      <Subreddits />
+      <Header className="header"/>  
+      <Main className="main" />
+      <Subreddits className="subreddits" />
     </div>
   );
 }

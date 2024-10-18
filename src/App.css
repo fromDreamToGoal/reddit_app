@@ -1,14 +1,25 @@
 .container {
     display: grid;
     grid-template-columns: 4fr 1fr;
-    grid-template-rows: auto 1fr;       /* Сетка из двух строк: Header и контент */
+    grid-template-rows: auto 1fr;
     grid-template-areas: 
-      "header header header"
-      "main main subreddits ";  /* Контент с боковыми колонками */
+      "header header"
+      "main subreddits";  /* Контент с боковыми колонками */
     height: 100vh;           /* Высота экрана */
     gap: 10px;               /* Отступы между элементами */
 }
 
+.header {
+  grid-area: header;
+}
+
+.main {
+  grid-area: main;
+}
+
+.subreddits {
+  grid-area: subreddits;
+}
 
 
 

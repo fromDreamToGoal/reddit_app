@@ -19,9 +19,11 @@ const Main = () => {
   }, [dispatch, selectedSubreddit]);
 
   if (isLoading) {
-    return <AnimatedList animation="zoom">
-      {Array(getRandomInteger(2,5)).fill(<CardLoading />)}
-    </AnimatedList>;
+    return <div className='main'>
+      <AnimatedList animation="zoom">
+      {Array(getRandomInteger(2,5)).fill(<CardLoading className="main" />)}
+    </AnimatedList>
+    </div>;
   }
 
   if (error) {
