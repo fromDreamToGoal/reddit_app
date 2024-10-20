@@ -42,9 +42,13 @@ const Main = () => {
 
   return (
     <div className="main-container">
-      {posts.map((post) => (
-        <Card key={post.id} post={post} />
-      ))}
+      {Array.isArray(posts) && posts.length > 0 ? (
+        posts.map((post) => (
+          <Card key={post.id} post={post} />
+        ))
+      ) : (
+        <div>No posts available</div> // Сообщение, если постов нет или они не загрузились
+      )}
     </div>
   );
 }

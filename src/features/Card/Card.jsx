@@ -30,10 +30,11 @@ const Card = ({ post }) => {
         <div className="comment-section">
           <div className="user-info">
           <img 
-              src={post.userAvatar}
-              alt="User avatar" 
-              className="user-avatar"
-            />
+            src={post.userAvatar || 'https://www.redditstatic.com/avatars/defaults/v2/avatar_default_1.png'}
+            onError={(e) => { e.target.src = 'https://www.redditstatic.com/avatars/defaults/v2/avatar_default_1.png'; }} // Стандартная аватарка при ошибке
+            alt="User avatar"
+            className="user-avatar"
+          />
             <span className="user-name">{post.userName}</span>
             <span className="post-time">{postDate}</span>
           </div>

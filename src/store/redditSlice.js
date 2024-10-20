@@ -13,7 +13,7 @@ const redditSlice = createSlice({
     posts: [],
     status: 'idle',
     error: null,
-    selectedSubreddit: '/pics',
+    selectedSubreddit: '/reactjs',
   },
   reducers: {},
   extraReducers: (builder) => {
