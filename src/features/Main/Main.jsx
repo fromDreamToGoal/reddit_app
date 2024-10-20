@@ -4,8 +4,8 @@ import { fetchPosts } from '../../store/redditSlice';
 import './Main.css';
 import Card from "../Card/Card.jsx";
 import CardLoading from '../Card/CardLoading.jsx';
-import { AnimatedList } from 'react-animated-list';
 import { getRandomInteger } from '../../utils/index.js';
+import { motion } from 'framer-motion';
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -19,11 +19,21 @@ const Main = () => {
   }, [dispatch, selectedSubreddit]);
 
   if (isLoading) {
-    return <div className='main'>
-      <AnimatedList animation="zoom">
-      {Array(getRandomInteger(2,5)).fill(<CardLoading className="main" />)}
-    </AnimatedList>
-    </div>;
+    return (
+      <div className='main'>
+        {Array.from({ length: getRandomInteger(2, 5) }, (_, index) => (
+          <motion.div key={index} initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{
+            duration: 0.8,
+            delay: 0.1,
+            ease: [0, 0.71, 0.2, 1.01]
+          }}>
+            <CardLoading />
+          </motion.div>
+        ))}
+      </div>
+    );
   }
 
   if (error) {
