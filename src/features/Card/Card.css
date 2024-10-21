@@ -21,13 +21,37 @@
     padding-top: 15px;
 }
   
+/* Обычные стили для кнопок */
 .upvote, .downvote {
-    background: none;
+    background-color: transparent;
     border: none;
     cursor: pointer;
     font-size: 20px;
 }
   
+  /* Стили для активных кнопок */
+.upvote.active {
+    color: green;
+}
+  
+.downvote.active {
+    color: red;
+}
+  
+  /* Стили для счётчика голосов */
+.vote-count {
+    font-size: 16px;
+    margin: 0 10px;
+}
+  
+.vote-count.upvoted {
+    color: green;
+}
+  
+.vote-count.downvoted {
+    color: red;
+}
+
 .vote-count {
     font-size: 18px;
     margin: 5px 0;

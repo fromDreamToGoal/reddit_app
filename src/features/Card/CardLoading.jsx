@@ -2,6 +2,9 @@ import React from 'react';
 import './CardLoading.css';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { BsHandThumbsUp,
+         BsHandThumbsDown 
+                   } from "react-icons/bs";
 
 
 const CardLoading = () => {
@@ -10,9 +13,9 @@ const CardLoading = () => {
           <div className="card">
         {/* Счётчик голосов */}
         <div className="vote-section">
-          <button className="upvote">⬆</button>
+          <button className="upvote"><BsHandThumbsUp /></button>
           <div className="vote-count"> <Skeleton width={30} /></div>
-          <button className="downvote">⬇</button>
+          <button className="downvote"><BsHandThumbsDown /></button>
         </div>
   
         {/* Секция контента */}

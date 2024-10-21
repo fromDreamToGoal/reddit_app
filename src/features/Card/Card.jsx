@@ -1,18 +1,71 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Card.css';
 import { calculatePostDate } from '../../utils/index';
+import { BsHandThumbsUp,
+         BsHandThumbsUpFill,
+         BsHandThumbsDown,
+         BsHandThumbsDownFill,
+                          } from "react-icons/bs";
 
 const Card = ({ post }) => {
   
   const postDate = calculatePostDate(post.created);
 
+  // Состояние для отслеживания голосования
+  const [voteStatus, setVoteStatus] = useState(null); // null, 'upvoted', 'downvoted'
+  const [voteCount, setVoteCount] = useState(post.voteCount); // Начальный счетчик голосов
+
+  // Обработка клика на кнопку "Upvote"
+  const handleUpvote = () => {
+    if (voteStatus === 'upvoted') {
+      // Если уже проголосован "за", отменяем голос
+      setVoteStatus(null);
+      setVoteCount(voteCount - 1);
+    } else {
+      // Если голос "против" был активен, то сбрасываем его
+      const adjustment = voteStatus === 'downvoted' ? 2 : 1;
+      setVoteStatus('upvoted');
+      setVoteCount(voteCount + adjustment);
+    }
+  };
+
+  // Обработка клика на кнопку "Downvote"
+  const handleDownvote = () => {
+    if (voteStatus === 'downvoted') {
+      // Если уже проголосован "против", отменяем голос
+      setVoteStatus(null);
+      setVoteCount(voteCount + 1);
+    } else {
+      // Если голос "за" был активен, то сбрасываем его
+      const adjustment = voteStatus === 'upvoted' ? 2 : 1;
+      setVoteStatus('downvoted');
+      setVoteCount(voteCount - adjustment);
+    }
+  };
+
+  // Определяем цвет счётчика голосов в зависимости от статуса
+  const voteCountClass = voteStatus === 'upvoted' 
+    ? 'vote-count upvoted' 
+    : voteStatus === 'downvoted' 
+    ? 'vote-count downvoted' 
+    : 'vote-count';
+
+    // Классы для кнопок
+  const upvoteClass = voteStatus === 'upvoted' ? 'upvote active' : 'upvote';
+  const downvoteClass = voteStatus === 'downvoted' ? 'downvote active' : 'downvote';
+
+
     return (
         <div className="card">
       {/* Счётчик голосов */}
       <div className="vote-section">
-        <button className="upvote">⬆</button>
-        <div className="vote-count">{post.voteCount}</div>
-        <button className="downvote">⬇</button>
+        <button className={upvoteClass} onClick={handleUpvote}>
+          {voteStatus === 'upvoted' ? <BsHandThumbsUpFill /> : <BsHandThumbsUp />}
+        </button>
+        <div className={voteCountClass}>{voteCount}</div>
+        <button className={downvoteClass} onClick={handleDownvote}>
+          {voteStatus === 'downvoted' ? <BsHandThumbsDownFill /> : <BsHandThumbsDown />}
+        </button>
       </div>
 
       {/* Секция контента */}
@@ -36,10 +89,10 @@ const Card = ({ post }) => {
             className="user-avatar"
           />
             <span className="user-name">{post.userName}</span>
-            <span className="post-time">{postDate}</span>
           </div>
+          <div className="post-time">{postDate}</div>
           <div className="comment-count">
-            <span>💬</span> {post.comments}
+            <span>💬 {post.comments}</span>
           </div>
         </div>
       </div>
