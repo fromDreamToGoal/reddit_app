@@ -6,6 +6,7 @@ import { BsHandThumbsUp,
          BsHandThumbsDown,
          BsHandThumbsDownFill,
                           } from "react-icons/bs";
+import { TbMessageCircle } from "react-icons/tb";
 
 const Card = ({ post }) => {
   
@@ -92,7 +93,8 @@ const Card = ({ post }) => {
           </div>
           <div className="post-time">{postDate}</div>
           <div className="comment-count">
-            <span>💬 {post.comments}</span>
+              <button className='comment-button'> <TbMessageCircle /> </button> 
+              <p>{post.comments}</p>
           </div>
         </div>
       </div>

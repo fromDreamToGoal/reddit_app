@@ -37,8 +37,16 @@
 .downvote.active {
     color: red;
 }
-  
-  /* Стили для счётчика голосов */
+
+.upvote :hover {
+    color: green;
+}
+
+.downvote :hover {
+    color: red;
+}
+
+/* Стили для счётчика голосов */
 .vote-count {
     font-size: 16px;
     margin: 0 10px;
@@ -111,3 +119,10 @@
     align-items: center;
 }
 
+.comment-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 3px;
+}
