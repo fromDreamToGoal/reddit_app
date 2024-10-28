@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPosts } from '../../store/redditSlice';
+import { fetchPosts, fetchComments } from '../../store/redditSlice';
 import './Main.css';
 import Card from "../Card/Card.jsx";
 import CardLoading from '../Card/CardLoading.jsx';
@@ -17,6 +17,10 @@ const Main = () => {
   useEffect(() => {
     dispatch(fetchPosts(selectedSubreddit));
   }, [dispatch, selectedSubreddit]);
+
+  const handleFetchComments = (subreddit, postId) => {
+    dispatch(fetchComments({ subreddit, postId }));
+  };
 
   if (isLoading) {
     return (
@@ -44,7 +48,12 @@ const Main = () => {
     <div className="main-container">
       {Array.isArray(posts) && posts.length > 0 ? (
         posts.map((post) => (
-          <Card key={post.id} post={post} />
+          <Card 
+            key={post.id} 
+            post={post} 
+            subreddit={selectedSubreddit} 
+            onFetchComments={handleFetchComments}
+          />
         ))
       ) : (
         <div>No posts available</div> // Сообщение, если постов нет или они не загрузились

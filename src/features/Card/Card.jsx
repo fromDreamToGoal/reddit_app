@@ -7,14 +7,14 @@ import { BsHandThumbsUp,
          BsHandThumbsDownFill,
                           } from "react-icons/bs";
 import { TbMessageCircle } from "react-icons/tb";
+import { useSelector } from 'react-redux';
 
-const Card = ({ post }) => {
-  
-  const postDate = calculatePostDate(post.created);
-
-  // Состояние для отслеживания голосования
+const Card = ({ post, subreddit, onFetchComments }) => {
+  const postDate = calculatePostDate(post.created); // Вычисляем дату публикации
   const [voteStatus, setVoteStatus] = useState(null); // null, 'upvoted', 'downvoted'
   const [voteCount, setVoteCount] = useState(post.voteCount); // Начальный счетчик голосов
+  const comments = useSelector((state) => state.reddit.comments[post.id]) || [];
+  const [showComments, setShowComments] = useState(false);
 
   // Обработка клика на кнопку "Upvote"
   const handleUpvote = () => {
@@ -55,6 +55,13 @@ const Card = ({ post }) => {
   const upvoteClass = voteStatus === 'upvoted' ? 'upvote active' : 'upvote';
   const downvoteClass = voteStatus === 'downvoted' ? 'downvote active' : 'downvote';
 
+    // Обработка клика на кнопку "Load Comments"
+    const handleLoadComments = () => {
+      if (!comments.length) {
+        onFetchComments(subreddit, post.id); // Теперь передаём `subreddit` и `post.id`
+      }
+      setShowComments(!showComments);
+    };
 
     return (
         <div className="card">
@@ -93,9 +100,21 @@ const Card = ({ post }) => {
           </div>
           <div className="post-time">{postDate}</div>
           <div className="comment-count">
-              <button className='comment-button'> <TbMessageCircle /> </button> 
-              <p>{post.comments}</p>
+            <button className="comment-button" onClick={handleLoadComments}>
+              <TbMessageCircle /> {post.comments}
+            </button>
           </div>
+          {showComments && (
+          <div className="comments-list">
+            {comments.map((comment) => (
+              <div key={comment.id} className="comment">
+                <div className="comment-author">{comment.author}</div>
+                <div className="comment-body">{comment.body}</div>
+                <div className="comment-date">{calculatePostDate(comment.created)}</div>
+              </div>
+            ))}
+          </div>
+        )}
         </div>
       </div>
     </div>

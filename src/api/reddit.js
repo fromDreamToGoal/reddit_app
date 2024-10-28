@@ -1,3 +1,30 @@
+const BASE_URL = 'https://www.reddit.com';
+// Функция для получения комментариев к посту
+export const fetchPostComments = async (subreddit, postId) => {
+  try {
+    const url = `${BASE_URL}/r/${subreddit}/comments/${postId}.json`;
+    console.log(`Fetching comments from: ${url}`);
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Network response was not ok: ${response.statusText}`);
+    }
+    const data = await response.json();
+    if (!data[1] || !data[1].data || !data[1].data.children) {
+      throw new Error('Invalid response structure');
+    }
+    return data[1].data.children.map(comment => ({
+      id: comment.data.id,
+      body: comment.data.body,
+      author: comment.data.author,
+      created: comment.data.created_utc,
+      score: comment.data.score,
+    }));
+  } catch (error) {
+    console.error('Failed to fetch comments:', error);
+    return [];
+  }
+};
+
 // Функция для получения информации об авторе
 const fetchUserAvatar = async (username) => {
   try {
