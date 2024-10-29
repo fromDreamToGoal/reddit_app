@@ -23,7 +23,11 @@ const redditSlice = createSlice({
     error: null,
     selectedSubreddit: '/reactjs',
   },
-  reducers: {},
+  reducers: {
+    setSelected: (state, action) => {
+      state.selectedSubreddit = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchPosts.pending, (state) => {
@@ -51,4 +55,5 @@ const redditSlice = createSlice({
   },
 });
 
+export const { setSelected } = redditSlice.actions;
 export default redditSlice.reducer;
