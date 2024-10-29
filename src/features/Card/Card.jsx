@@ -8,6 +8,7 @@ import { BsHandThumbsUp,
                           } from "react-icons/bs";
 import { TbMessageCircle } from "react-icons/tb";
 import { useSelector } from 'react-redux';
+import { getRandomAvatar } from '../../utils/index';
 
 const Card = ({ post, subreddit, onFetchComments }) => {
   const postDate = calculatePostDate(post.created); // Вычисляем дату публикации
@@ -91,8 +92,8 @@ const Card = ({ post, subreddit, onFetchComments }) => {
         <div className="comment-section">
           <div className="user-info">
           <img 
-            src={post.userAvatar || 'https://www.redditstatic.com/avatars/defaults/v2/avatar_default_1.png'}
-            onError={(e) => { e.target.src = 'https://www.redditstatic.com/avatars/defaults/v2/avatar_default_1.png'; }} // Стандартная аватарка при ошибке
+            src={post.userAvatar || getRandomAvatar()} // Случайная аватарка по умолчанию
+            onError={(e) => { e.target.src = getRandomAvatar(); }} // Стандартная аватарка при ошибке
             alt="User avatar"
             className="user-avatar"
           />

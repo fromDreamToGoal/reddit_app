@@ -16,6 +16,7 @@ const Main = () => {
 
   useEffect(() => {
     dispatch(fetchPosts(selectedSubreddit));
+    console.log("Current selected subreddit:", selectedSubreddit);
   }, [dispatch, selectedSubreddit]);
 
   const handleFetchComments = (subreddit, postId) => {

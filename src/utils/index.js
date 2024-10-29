@@ -24,10 +24,28 @@ export const calculatePostDate = (created) => {
   }
 };
 
-  export function getRandomInteger(min, max) {
+
+export function getRandomInteger(min, max) {
     // Убедимся, что значения min и max целые числа
     min = Math.ceil(min);
     max = Math.floor(max);
     // Генерация случайного числа в диапазоне, включая min и max
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+// Массив с URL различных аватарок по умолчанию
+const defaultAvatars = [
+      'https://www.redditstatic.com/avatars/defaults/v2/avatar_default_1.png',
+      'https://www.redditstatic.com/avatars/defaults/v2/avatar_default_2.png',
+      'https://www.redditstatic.com/avatars/defaults/v2/avatar_default_3.png',
+      'https://www.redditstatic.com/avatars/defaults/v2/avatar_default_4.png',
+      'https://www.redditstatic.com/avatars/defaults/v2/avatar_default_5.png',
+      'https://www.redditstatic.com/avatars/defaults/v2/avatar_default_6.png',
+      'https://www.redditstatic.com/avatars/defaults/v2/avatar_default_7.png',
+];
+
+// Функция для выбора случайной аватарки
+export const getRandomAvatar = () => {
+      const randomIndex = Math.floor(Math.random() * defaultAvatars.length);
+      return defaultAvatars[randomIndex];
+};
