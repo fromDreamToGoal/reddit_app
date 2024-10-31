@@ -83,12 +83,15 @@
 }
   
 .comment-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    grid-area: comment-section;
     margin-top: 10px;
     padding-top: 10px;
     border-top: 2px solid #f0f0f0;
+}
+
+.post-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
   
 .user-info {
@@ -111,11 +114,15 @@
 .post-time {
     color: #777;
     font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
   
 .comment-count {
     font-size: 16px;
     display: flex;
+    justify-content: end;
     align-items: center;
 }
 
@@ -138,6 +145,11 @@
     padding: 5px;
     border-bottom: 1px solid #ddd;
     margin-bottom: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.comment :hover {
+    transform: translateY(5px);
 }
 
 .comment-author {

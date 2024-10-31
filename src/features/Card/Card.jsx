@@ -90,20 +90,22 @@ const Card = ({ post, subreddit, onFetchComments }) => {
 
         {/* Информация о пользователе и комментарии */}
         <div className="comment-section">
-          <div className="user-info">
-          <img 
-            src={post.userAvatar || getRandomAvatar()} // Случайная аватарка по умолчанию
-            onError={(e) => { e.target.src = getRandomAvatar(); }} // Стандартная аватарка при ошибке
-            alt="User avatar"
-            className="user-avatar"
-          />
-            <span className="user-name">{post.userName}</span>
-          </div>
-          <div className="post-time">{postDate}</div>
-          <div className="comment-count">
-            <button className="comment-button" onClick={handleLoadComments}>
-              <TbMessageCircle /> {post.comments}
-            </button>
+          <div className="post-info">
+            <div className="user-info">
+            <img 
+              src={post.userAvatar || getRandomAvatar()} // Случайная аватарка по умолчанию
+              onError={(e) => { e.target.src = getRandomAvatar(); }} // Стандартная аватарка при ошибке
+              alt="User avatar"
+              className="user-avatar"
+            />
+              <span className="user-name">{post.userName}</span>
+            </div>
+            <div className="post-time">{postDate}</div>
+            <div className="comment-count">
+             <button className="comment-button" onClick={handleLoadComments}>
+                <TbMessageCircle /> {post.comments}
+              </button>
+            </div>
           </div>
           {showComments && (
           <div className="comments-list">

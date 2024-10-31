@@ -1,4 +1,4 @@
-.card {
+.card-loading {
     display: grid;
     grid-template-columns: 40px 1fr;
     grid-template-rows: auto auto 1fr auto;
@@ -13,7 +13,7 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.vote-section {
+.vote-section-loading {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,65 +21,50 @@
     padding-top: 15px;
 }
   
-.upvote, .downvote {
+.upvote-loading, .downvote-loading {
     background: none;
     border: none;
     cursor: pointer;
     font-size: 20px;
 }
   
-.vote-count {
+.vote-count-loading {
     font-size: 18px;
     margin: 5px 0;
 }
   
-.post-section {
+.post-section-loading {
     flex-grow: 1;
 }
   
-.post-text {
+.post-text-loading {
     font-size: 16px;
     margin-bottom: 10px;
 }
   
-.post-image {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-  
-.comment-section {
+.comment-section-loading {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 10px;
 }
   
-.user-info {
+.user-info-loading {
     display: flex;
     align-items: center;
 }
   
-.user-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-  
-.user-name {
+.user-name-loading {
     font-weight: bold;
     margin-right: 10px;
 }
   
-.post-time {
+.post-time-loading {
     color: #777;
     font-size: 12px;
 }
   
-.comment-count {
+.comment-count-loading {
     font-size: 16px;
     display: flex;
     align-items: center;

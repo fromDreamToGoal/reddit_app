@@ -10,17 +10,17 @@ import { BsHandThumbsUp,
 const CardLoading = () => {
   
       return (
-          <div className="card">
+          <div className="card-loading">
         {/* Счётчик голосов */}
-        <div className="vote-section">
-          <button className="upvote"><BsHandThumbsUp /></button>
-          <div className="vote-count"> <Skeleton width={30} /></div>
-          <button className="downvote"><BsHandThumbsDown /></button>
+        <div className="vote-section-loading">
+          <button className="upvote-loading"><BsHandThumbsUp /></button>
+          <div className="vote-count-loading"> <Skeleton width={30} /></div>
+          <button className="downvote-loading"><BsHandThumbsDown /></button>
         </div>
   
         {/* Секция контента */}
-        <div className="post-section">
-          <p className="post-text">
+        <div className="post-section-loading">
+          <p className="post-text-loading">
             <Skeleton />
           </p>
           <p><Skeleton /></p>
@@ -28,13 +28,13 @@ const CardLoading = () => {
           <Skeleton height={250} />
   
           {/* Информация о пользователе и комментарии */}
-          <div className="comment-section">
-            <div className="user-info">
+          <div className="comment-section-loading">
+            <div className="user-info-loading">
             <Skeleton />
-              <span className="user-name"><Skeleton /></span>
-              <span className="post-time"><Skeleton /></span>
+              <span className="user-name-loading"><Skeleton /></span>
+              <span className="post-time-loading"><Skeleton /></span>
             </div>
-            <div className="comment-count">
+            <div className="comment-count-loading">
               <span>💬</span> <Skeleton />
             </div>
           </div>
