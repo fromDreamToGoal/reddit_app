@@ -52,6 +52,7 @@
 .user-info-loading {
     display: flex;
     align-items: center;
+    gap: 1rem;
 }
   
 .user-name-loading {
@@ -68,6 +69,7 @@
     font-size: 16px;
     display: flex;
     align-items: center;
+    gap: 1rem;
 }
 
 

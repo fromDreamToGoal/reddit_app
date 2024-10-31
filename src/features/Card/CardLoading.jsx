@@ -4,7 +4,8 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { BsHandThumbsUp,
          BsHandThumbsDown 
-                   } from "react-icons/bs";
+        } from "react-icons/bs";
+import { TbMessageCircle } from "react-icons/tb";
 
 
 const CardLoading = () => {
@@ -30,12 +31,12 @@ const CardLoading = () => {
           {/* Информация о пользователе и комментарии */}
           <div className="comment-section-loading">
             <div className="user-info-loading">
-            <Skeleton />
-              <span className="user-name-loading"><Skeleton /></span>
-              <span className="post-time-loading"><Skeleton /></span>
+              <Skeleton circle={true} height={50} width={50} />
+              <span className="user-name-loading"><Skeleton width={50}/></span>
+              <span className="post-time-loading"><Skeleton width={70}/></span>
             </div>
             <div className="comment-count-loading">
-              <span>💬</span> <Skeleton />
+              <span><TbMessageCircle /></span> <Skeleton width={20}/>
             </div>
           </div>
         </div>
