@@ -6,7 +6,7 @@ import { BsHandThumbsUp,
          BsHandThumbsDown,
          BsHandThumbsDownFill,
                           } from "react-icons/bs";
-import { TbMessageCircle } from "react-icons/tb";
+import { TbMessageCircle, TbMessageCircleFilled } from "react-icons/tb";
 import { useSelector } from 'react-redux';
 import { getRandomAvatar } from '../../utils/index';
 
@@ -16,6 +16,7 @@ const Card = ({ post, subreddit, onFetchComments }) => {
   const [voteCount, setVoteCount] = useState(post.voteCount); // Начальный счетчик голосов
   const comments = useSelector((state) => state.reddit.comments[post.id]) || [];
   const [showComments, setShowComments] = useState(false);
+  const [isClicked, setIsClicked] = useState(false); // Добавляем состояние для отслеживания клика на кнопке коментария
 
   // Обработка клика на кнопку "Upvote"
   const handleUpvote = () => {
@@ -64,6 +65,12 @@ const Card = ({ post, subreddit, onFetchComments }) => {
       setShowComments(!showComments);
     };
 
+    const toggleCommentButton = () => {
+      setIsClicked((prev) => !prev);
+      handleLoadComments();
+    };
+  
+
     return (
         <div className="card">
       {/* Счётчик голосов */}
@@ -102,15 +109,18 @@ const Card = ({ post, subreddit, onFetchComments }) => {
             </div>
             <div className="post-time">{postDate}</div>
             <div className="comment-count">
-             <button className="comment-button" onClick={handleLoadComments}>
-                <TbMessageCircle /> {post.comments}
+             <button 
+                className={`comment-button ${isClicked ? 'clicked' : ''}`}
+                onClick={toggleCommentButton}
+             >
+                {isClicked ? <TbMessageCircleFilled /> : <TbMessageCircle />} {post.comments}
               </button>
             </div>
           </div>
           {showComments && (
           <div className="comments-list">
             {comments.map((comment) => (
-              <div key={comment.id} className="comment">
+              <div key={comment.id} className="comment" id='box'>
                 <div className="comment-author">{comment.author}</div>
                 <div className="comment-body">{comment.body}</div>
                 <div className="comment-date">{calculatePostDate(comment.created)}</div>

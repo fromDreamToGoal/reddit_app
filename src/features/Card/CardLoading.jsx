@@ -33,8 +33,8 @@ const CardLoading = () => {
             <div className="user-info-loading">
               <Skeleton circle={true} height={50} width={50} />
               <span className="user-name-loading"><Skeleton width={50}/></span>
-              <span className="post-time-loading"><Skeleton width={70}/></span>
             </div>
+            <span className="post-time-loading"><Skeleton width={70}/></span>
             <div className="comment-count-loading">
               <span><TbMessageCircle /></span> <Skeleton width={20}/>
             </div>

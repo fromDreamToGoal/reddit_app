@@ -132,6 +132,19 @@
     cursor: pointer;
     font-size: 16px;
     margin-top: 3px;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.3s;
+}
+
+.comment-button:hover {
+    color: #FF5224;;
+}
+  
+.comment-button.clicked {
+    color: #50A584;
 }
 
 .comments-section {
@@ -148,8 +161,8 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.comment :hover {
-    transform: translateY(5px);
+#box:hover {
+    transform: translateY(-5px);
 }
 
 .comment-author {
