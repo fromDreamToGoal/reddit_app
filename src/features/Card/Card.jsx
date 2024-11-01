@@ -89,7 +89,7 @@ const Card = ({ post, subreddit, onFetchComments }) => {
         <p className="post-text">
           {post.title}
         </p>
-        <p>{post.text}</p>
+        <p>{post.text || post.selftext}</p>
         
         {post.image && post.image !== 'self' && post.image !== 'default' && (
           <img src={post.image} alt="Post visual" className="post-image" />
@@ -100,7 +100,7 @@ const Card = ({ post, subreddit, onFetchComments }) => {
           <div className="post-info">
             <div className="user-info">
             <img 
-              src={post.userAvatar || getRandomAvatar()} // Случайная аватарка по умолчанию
+              src={getRandomAvatar()} // Случайная аватарка по умолчанию
               onError={(e) => { e.target.src = getRandomAvatar(); }} // Стандартная аватарка при ошибке
               alt="User avatar"
               className="user-avatar"

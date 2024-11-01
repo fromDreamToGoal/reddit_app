@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import './Header.css';
+import { fetchPostsSearch } from '../../store/redditSlice';
+import { useDispatch } from 'react-redux';
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const dispatch = useDispatch();
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
@@ -10,8 +13,10 @@ const Header = () => {
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
+    if (searchTerm.trim()) {
+      dispatch(fetchPostsSearch({ subreddit: searchTerm })); // Передаём как параметр
+    }
     console.log('Search Term:', searchTerm);
-    // Здесь можно будет вызвать функцию для поиска по сабреддитам
   };
 
   return (

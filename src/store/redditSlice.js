@@ -1,6 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchSubredditPosts, fetchPostComments } from '../api/reddit';
 
+// Асинхронное действие для поска из Reddit
+export const fetchPostsSearch = createAsyncThunk('reddit/fetchPostsSearch', async ({ subreddit }) => {
+  const url = `https://www.reddit.com/r/${subreddit}.json`;
+  const response = await fetch(url);
+  const data = await response.json();
+  return data.data.children.map((child) => child.data);
+});
 // Асинхронное действие для получения постов из Reddit
 export const fetchPosts = createAsyncThunk('reddit/fetchPosts', async (subreddit) => {
   const posts = await fetchSubredditPosts(subreddit);  // Используем функцию из reddit.js
@@ -50,6 +57,17 @@ const redditSlice = createSlice({
       })
       .addCase(fetchComments.rejected, (state, action) => {
         state.statusComments = 'failed';
+        state.error = action.error.message;
+      })
+      .addCase(fetchPostsSearch.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchPostsSearch.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.posts = action.payload;
+      })
+      .addCase(fetchPostsSearch.rejected, (state, action) => {
+        state.status = 'failed';
         state.error = action.error.message;
       });
   },
