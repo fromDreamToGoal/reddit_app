@@ -18,6 +18,15 @@
     width: 50px;
     margin-right: 10px;
   }
+
+.button-hide {
+  background-color: transparent;
+  border: none;
+}
+
+.button-hide :hover {
+  cursor: pointer;
+}
   
   .title {
     font-size: 24px;
@@ -47,4 +56,9 @@
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
+  }
+
+  .button:hover {
+    background-color: #ff4500;
+    color: #fff;
   }

@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchSubreddits } from '../../store/subRedditSlice';
 import { fetchPosts, setSelected } from '../../store/redditSlice';
 import './Subreddits.css';
+import { useSubredditVisibility } from '../../utils/SubredditContext.js';
 
 const Subreddits = () => {
   const dispatch = useDispatch();
   const { subreddits, loading, error } = useSelector((state) => state.subreddits);
   const [selectedSubreddit, setSelectedSubreddit] = useState(null);
+  const { isVisible } = useSubredditVisibility();
 
   useEffect(() => {
     dispatch(fetchSubreddits());
@@ -28,6 +30,13 @@ const Subreddits = () => {
   }
 
   return (
+    <div
+      className={`subreddits ${isVisible ? 'visible' : 'hidden'}`}
+      style={{
+        transition: 'transform 0.3s ease',
+        transform: isVisible ? 'translateX(0)' : 'translateX(100%)'
+      }}
+>
     <div className="subreddits-container">
       <h3 className="subreddits-title">Subreddits</h3>
       <ul className="subreddits-list">
@@ -49,6 +58,7 @@ const Subreddits = () => {
         ))}
       </ul>
     </div>
+</div>
   );
 };
 
