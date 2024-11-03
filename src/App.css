@@ -17,6 +17,12 @@
   grid-area: main;
 }
 
+.full-width {
+  grid-template-areas: 
+    "header header"
+    "main main";  /* Контент на всю ширину */
+}
+
 .subreddits {
   grid-area: subreddits;
 }

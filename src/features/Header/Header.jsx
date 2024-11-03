@@ -3,12 +3,11 @@ import './Header.css';
 import { fetchPostsSearch } from '../../store/redditSlice';
 import { useDispatch } from 'react-redux';
 import { TfiAlignJustify } from "react-icons/tfi";
-import { useSubredditVisibility } from '../../utils/SubredditContext.js';
 
-const Header = () => {
+
+const Header = ({ toggleSubreddits }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const dispatch = useDispatch();
-  const { toggleVisibility } = useSubredditVisibility();
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
@@ -47,7 +46,7 @@ const Header = () => {
           Search
         </button>
       </form>
-      <button className="button-hide" onClick={toggleVisibility}>
+      <button className="button-hide" onClick={toggleSubreddits}>
         <TfiAlignJustify />
       </button>
     </header>
