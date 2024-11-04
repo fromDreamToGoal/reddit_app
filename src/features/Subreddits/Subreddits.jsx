@@ -5,6 +5,7 @@ import { fetchPosts, setSelected } from '../../store/redditSlice';
 import './Subreddits.css';
 import { useSubredditVisibility } from '../../utils/SubredditContext.js';
 import { motion } from 'framer-motion';
+import { SubredditSkeleton } from './SubredditSkeleton.jsx';
 
 const Subreddits = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const Subreddits = () => {
   };
 
   if(loading) {
-    return <div>Loading...</div>;
+    return <SubredditSkeleton />;
   }
 
   if(error) {
