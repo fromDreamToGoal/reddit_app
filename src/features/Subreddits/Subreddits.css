@@ -59,11 +59,3 @@
     font-size: 1.1em;
     font-weight: normal;
   }
-
-  .subreddits.hidden {
-    transform: translateX(100%);
-  }
-  
-  .subreddits.visible {
-    transform: translateX(0);
-  }

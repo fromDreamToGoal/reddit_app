@@ -3,11 +3,13 @@ import './Header.css';
 import { fetchPostsSearch } from '../../store/redditSlice';
 import { useDispatch } from 'react-redux';
 import { TfiAlignJustify } from "react-icons/tfi";
+import { motion } from "framer-motion";
 
 
 const Header = ({ toggleSubreddits }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const dispatch = useDispatch();
+  const [isRotated, setIsRotated] = useState(false);
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
@@ -19,6 +21,11 @@ const Header = ({ toggleSubreddits }) => {
       dispatch(fetchPostsSearch({ subreddit: searchTerm })); // Передаём как параметр
     }
     console.log('Search Term:', searchTerm);
+  };
+
+  const handleClick = () => {
+    setIsRotated((prev) => !prev); // Обновляем локальное состояние для анимации
+    toggleSubreddits(); // Вызываем переданную функцию для управления компонентом Subreddits
   };
 
   return (
@@ -46,9 +53,14 @@ const Header = ({ toggleSubreddits }) => {
           Search
         </button>
       </form>
-      <button className="button-hide" onClick={toggleSubreddits}>
-        <TfiAlignJustify />
-      </button>
+      <motion.div
+        animate={{ rotate: isRotated ? 180 : 0 }}
+        transition={{ type: "spring" }}
+      >
+        <button className="button-hide" onClick={handleClick}>
+          <TfiAlignJustify />
+        </button>
+      </motion.div>
     </header>
   );
 };

@@ -4,6 +4,7 @@ import { fetchSubreddits } from '../../store/subRedditSlice';
 import { fetchPosts, setSelected } from '../../store/redditSlice';
 import './Subreddits.css';
 import { useSubredditVisibility } from '../../utils/SubredditContext.js';
+import { motion } from 'framer-motion';
 
 const Subreddits = () => {
   const dispatch = useDispatch();
@@ -30,13 +31,11 @@ const Subreddits = () => {
   }
 
   return (
-    <div
-      className={`subreddits ${isVisible ? 'visible' : 'hidden'}`}
-      style={{
-        transition: 'transform 0.3s ease',
-        transform: isVisible ? 'translateX(0)' : 'translateX(100%)'
-      }}
->
+      <motion.div
+      initial={{ x: '100%' }}
+      animate={{ x: isVisible ? 0 : '100%' }}
+      transition={{ duration: 0.5 }}
+    >
     <div className="subreddits-container">
       <h3 className="subreddits-title">Subreddits</h3>
       <ul className="subreddits-list">
@@ -58,7 +57,7 @@ const Subreddits = () => {
         ))}
       </ul>
     </div>
-</div>
+    </motion.div>
   );
 };
 
