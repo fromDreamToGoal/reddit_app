@@ -86,10 +86,10 @@ const Card = ({ post, subreddit, onFetchComments }) => {
 
       {/* Секция контента */}
       <div className="post-section">
-        <p className="post-text">
+        <p className="post-title">
           {post.title}
         </p>
-        <p>{post.text || post.selftext}</p>
+        <p className='post-text'>{post.text || post.selftext}</p>
         
         {post.image && post.image !== 'self' && post.image !== 'default' && (
           <img src={post.image} alt="Post visual" className="post-image" />

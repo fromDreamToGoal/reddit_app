@@ -1,6 +1,6 @@
 .main-container {
   grid-area: main;
   padding: 20px;
-  background-color: #ffffff;
+  background-color: transparent;
   overflow-y: auto;
 }

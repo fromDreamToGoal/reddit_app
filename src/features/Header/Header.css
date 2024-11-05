@@ -1,10 +1,10 @@
 .header {
-  grid-area: header;
+ grid-area: header;
  display: flex;
  align-items: center;
  justify-content: space-between;
  padding: 10px;
- background-color: #f8f9fa;
+ background-color: transparent;
  border-bottom: 2px solid #dee2e6;
 }
   
@@ -16,20 +16,24 @@
 .logo {
     width: 50px;
     margin-right: 10px;
+    background: none;
 }
 
 .button-hide {
+  color: white;
   background-color: transparent;
   border: none;
 }
 
 .button-hide :hover {
   cursor: pointer;
+  box-shadow: 0 0 15px rgba(250, 113, 1, 0.805);
 }
   
 .title {
     font-size: 24px;
     margin: 0;
+    color: #ff4500;
 }
 
 @media (min-width: 425px) and (max-width: 550px) {

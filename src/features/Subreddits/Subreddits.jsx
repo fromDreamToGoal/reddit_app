@@ -38,7 +38,7 @@ const Subreddits = () => {
       transition={{ duration: 0.5 }}
     >
     <div className="subreddits-container">
-      <h3 className="subreddits-title">Subreddits</h3>
+      <h2 className="subreddits-title">Subreddits</h2>
       <ul className="subreddits-list">
         {subreddits.map((subreddit) => (
           <li key={subreddit.id} className={`subreddit-item ${selectedSubreddit === subreddit.display_name ? 'selected' : ''}`}>

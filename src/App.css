@@ -1,12 +1,13 @@
 .container {
-    display: grid;
-    grid-template-columns: 4fr 1fr;
-    grid-template-rows: auto 1fr;
-    grid-template-areas: 
-      "header header"
-      "main subreddits";  /* Контент с боковыми колонками */
-    height: 100vh;           /* Высота экрана */
-    gap: 10px;               /* Отступы между элементами */
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: 
+    "header header"
+    "main subreddits";  /* Контент с боковыми колонками */
+  height: 100vh;           /* Высота экрана */
+  gap: 10px;               /* Отступы между элементами */
+  background-color: #1a1a1a;
 }
 
 .header {
