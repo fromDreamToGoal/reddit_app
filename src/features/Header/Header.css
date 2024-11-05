@@ -58,6 +58,12 @@
     border: none;
     margin-right: 10px;
 }
+
+@media (max-width: 425px) {
+  .input {
+    width: 7rem;
+  }
+}
   
 .button {
     padding: 8px 16px;
