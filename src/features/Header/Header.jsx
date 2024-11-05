@@ -33,7 +33,7 @@ const Header = ({ toggleSubreddits }) => {
       {/* Логотип и название */}
       <div className="logo-container">
         <img
-          src="https://www.redditinc.com/assets/images/site/reddit-logo.png"
+          src="https://static-00.iconduck.com/assets.00/reddit-logo-icon-512x512-jv3e2p8i.png"
           alt="Reddit Logo"
           className="logo"
         />
