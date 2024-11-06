@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSubreddits } from '../../store/subRedditSlice';
 import { fetchPosts, setSelected } from '../../store/redditSlice';
@@ -7,20 +7,23 @@ import { useSubredditVisibility } from '../../utils/SubredditContext.js';
 import { motion } from 'framer-motion';
 import { SubredditSkeleton } from './SubredditSkeleton.jsx';
 
-const Subreddits = () => {
+const Subreddits = ({ selectedSubreddit, onSelectSubreddit, toggleSubreddits }) => {
   const dispatch = useDispatch();
   const { subreddits, loading, error } = useSelector((state) => state.subreddits);
-  const [selectedSubreddit, setSelectedSubreddit] = useState(null);
   const { isVisible } = useSubredditVisibility();
 
   useEffect(() => {
-    dispatch(fetchSubreddits());
-  }, [dispatch]);
+    // Проверяем, есть ли уже сабреддиты в состоянии
+    if (!subreddits || subreddits.length === 0) {
+      dispatch(fetchSubreddits()); // Запрашиваем сабреддиты, если их нет
+    }
+  }, [dispatch, subreddits]);
 
   const handleSubredditClick = (subredditName) => {
     dispatch(setSelected(subredditName));
-    setSelectedSubreddit(subredditName);
+    onSelectSubreddit(subredditName); // Смена выбранного сабреддита
     dispatch(fetchPosts(subredditName));
+    toggleSubreddits();
   };
 
   if(loading) {

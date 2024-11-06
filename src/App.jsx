@@ -7,9 +7,14 @@ import './App.css';
 
 function App() {
   const [isSubredditsVisible, setIsSubredditsVisible] = useState(true);
+  const [selectedSubreddit, setSelectedSubreddit] = useState(null); // Состояние для выбранного сабреддита
 
   const toggleSubreddits = () => {
     setIsSubredditsVisible((prev) => !prev);
+  };
+
+  const handleSubredditSelection = (subredditName) => {
+    setSelectedSubreddit(subredditName); // Обновляем выбранный сабреддит
   };
 
   return (
@@ -17,7 +22,12 @@ function App() {
       <div className={`container ${isSubredditsVisible ? '' : 'full-width'}`}>
         <Header className="header" toggleSubreddits={toggleSubreddits}/>  
         <Main className='main' />
-        {isSubredditsVisible && <Subreddits className='subreddits'/>}
+        {isSubredditsVisible && 
+        <Subreddits 
+          className='subreddits' 
+          toggleSubreddits={toggleSubreddits}
+          selectedSubreddit={selectedSubreddit}
+          onSelectSubreddit={handleSubredditSelection} />}
       </div>
     </SubredditProvider>
   );

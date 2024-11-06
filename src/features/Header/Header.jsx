@@ -47,9 +47,10 @@ const Header = ({ toggleSubreddits }) => {
           placeholder="Enter text"
           value={searchTerm}
           onChange={handleInputChange}
-          className="input"
+          className="search-input"
+          required={true}
         />
-        <button type="submit" className="button">
+        <button type="submit" className="search-button">
           Search
         </button>
       </form>
