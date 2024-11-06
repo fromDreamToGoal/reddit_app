@@ -4,9 +4,10 @@ import { fetchPostsSearch } from '../../store/redditSlice';
 import { useDispatch } from 'react-redux';
 import { TfiAlignJustify } from "react-icons/tfi";
 import { motion } from "framer-motion";
+import { fetchPosts, setSelected } from '../../store/redditSlice';
 
 
-const Header = ({ toggleSubreddits }) => {
+const Header = ({ toggleSubreddits, onSelectSubreddit }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const dispatch = useDispatch();
   const [isRotated, setIsRotated] = useState(false);
@@ -28,10 +29,16 @@ const Header = ({ toggleSubreddits }) => {
     toggleSubreddits(); // Вызываем переданную функцию для управления компонентом Subreddits
   };
 
+  const handleHomeClick = () => {
+    dispatch(setSelected('Home'));
+    dispatch(fetchPosts('Home'));
+    onSelectSubreddit('Home');
+  };
+
   return (
     <header className="header">
       {/* Логотип и название */}
-      <div className="logo-container">
+      <div className="logo-container" onClick={() => handleHomeClick()}>
         <img
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnee_YMBs_jzSmWDkrWkreR8Uc9RS-2kTgzw&s"
           alt="Reddit Logo"

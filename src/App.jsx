@@ -20,7 +20,10 @@ function App() {
   return (
     <SubredditProvider>
       <div className={`container ${isSubredditsVisible ? '' : 'full-width'}`}>
-        <Header className="header" toggleSubreddits={toggleSubreddits}/>  
+        <Header 
+          className="header" 
+          toggleSubreddits={toggleSubreddits}
+          onSelectSubreddit={handleSubredditSelection} />  
         <Main className='main' />
         {isSubredditsVisible && 
         <Subreddits 

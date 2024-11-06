@@ -9,6 +9,7 @@ import { BsHandThumbsUp,
 import { TbMessageCircle, TbMessageCircleFilled } from "react-icons/tb";
 import { useSelector } from 'react-redux';
 import { getRandomAvatar } from '../../utils/index';
+import CommentSkeleton from './CommentSkeleton';
 
 const Card = ({ post, subreddit, onFetchComments }) => {
   const postDate = calculatePostDate(post.created); // Вычисляем дату публикации
@@ -17,6 +18,7 @@ const Card = ({ post, subreddit, onFetchComments }) => {
   const comments = useSelector((state) => state.reddit.comments[post.id]) || [];
   const [showComments, setShowComments] = useState(false);
   const [isClicked, setIsClicked] = useState(false); // Добавляем состояние для отслеживания клика на кнопке коментария
+  const isLoading = useSelector((state) => state.reddit.statusComments === 'loading');
 
   // Обработка клика на кнопку "Upvote"
   const handleUpvote = () => {
@@ -118,16 +120,24 @@ const Card = ({ post, subreddit, onFetchComments }) => {
             </div>
           </div>
           {showComments && (
-          <div className="comments-list">
-            {comments.map((comment) => (
-              <div key={comment.id} className="comment" id='box'>
-                <div className="comment-author">{comment.author}</div>
-                <div className="comment-body">{comment.body}</div>
-                <div className="comment-date">{calculatePostDate(comment.created)}</div>
-              </div>
-            ))}
-          </div>
-        )}
+            <div className="comments-list">
+              { isLoading ? (
+                <>
+                  <CommentSkeleton />
+                  <CommentSkeleton />
+                  <CommentSkeleton />
+                </> 
+                ) : (
+                  comments.map((comment) => (
+                    <div key={comment.id} className="comment" id='box'>
+                      <div className="comment-author">{comment.author}</div>
+                      <div className="comment-body">{comment.body}</div>
+                      <div className="comment-date">{calculatePostDate(comment.created)}</div>
+                    </div>
+                  ))
+                )}
+            </div>
+          )}
         </div>
       </div>
     </div>
