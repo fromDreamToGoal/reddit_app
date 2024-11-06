@@ -6,6 +6,7 @@ import Card from "../Card/Card.jsx";
 import CardLoading from '../Card/CardLoading.jsx';
 import { getRandomInteger } from '../../utils/index.js';
 import { motion } from 'framer-motion';
+import ErrorFallback from '../ErrorFallback/ErrorFallback.jsx';
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -42,7 +43,9 @@ const Main = () => {
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className='main'>
+              <ErrorFallback />
+            </div>
   }
 
   return (

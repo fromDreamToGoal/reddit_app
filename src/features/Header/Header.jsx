@@ -22,6 +22,7 @@ const Header = ({ toggleSubreddits, onSelectSubreddit }) => {
       dispatch(fetchPostsSearch({ subreddit: searchTerm })); // Передаём как параметр
     }
     console.log('Search Term:', searchTerm);
+    setSearchTerm('');
   };
 
   const handleClick = () => {

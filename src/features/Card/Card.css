@@ -121,7 +121,13 @@
     font-weight: bold;
     margin-right: 10px;
 }
-  
+
+@media (max-width: 425px) {
+    .user-name {
+        font-size: 0.7rem;
+    }
+}
+
 .post-time {
     color: #777;
     font-size: 12px;

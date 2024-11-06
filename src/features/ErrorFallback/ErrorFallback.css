@@ -1,0 +1,23 @@
+.error-fallback {
+    text-align: center;
+    padding: 20px;
+    background-color: #2b2b2b;
+    color: #ff6b6b;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .retry-button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .retry-button:hover {
+    background-color: #ff4b4b;
+  }
