@@ -6,6 +6,7 @@ import './Subreddits.css';
 import { useSubredditVisibility } from '../../utils/SubredditContext.js';
 import { motion } from 'framer-motion';
 import { SubredditSkeleton } from './SubredditSkeleton.jsx';
+import { HiArrowRightCircle } from "react-icons/hi2";
 
 const Subreddits = ({ selectedSubreddit, onSelectSubreddit, toggleSubreddits }) => {
   const dispatch = useDispatch();
@@ -41,7 +42,12 @@ const Subreddits = ({ selectedSubreddit, onSelectSubreddit, toggleSubreddits }) 
       transition={{ duration: 0.5 }}
     >
     <div className="subreddits-container">
-      <h2 className="subreddits-title">Subreddits</h2>
+      <div className='subreddits-header'>
+        <button onClick={toggleSubreddits} className="hide-subreddits-button">
+          <HiArrowRightCircle size={24} />
+        </button>
+        <h2 className="subreddits-title">Subreddits</h2>
+      </div>
       <ul className="subreddits-list">
         {subreddits.map((subreddit) => (
           <li key={subreddit.id} className={`subreddit-item ${selectedSubreddit === subreddit.display_name ? 'selected' : ''}`}>
