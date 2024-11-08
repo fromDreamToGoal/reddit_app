@@ -3,8 +3,8 @@ import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import App from '../App';
-import redditReducer from '../store/redditSlice'; // Подключите ваш редьюсер
-import subredditsReducer from '../store/subRedditSlice'; // Подключите ваш редьюсер
+import redditReducer from '../store/redditSlice'; 
+import subredditsReducer from '../store/subRedditSlice'; 
 
 // Настройка mock store с redux-thunk
 const store = configureStore({
@@ -60,5 +60,35 @@ describe('App', () => {
     const titleElement = screen.getByRole('heading', { name: /Reddit na minimalkakh/i });
     expect(titleElement).toBeInTheDocument();
   });
+  it('toggles isSunbredditsVisible', () => {
+    render(
+      <Provider store={store}>
+        <App />
+      </Provider>
+    );
+    const buttonElement = screen.getByTestId('button-hide');
+    expect(buttonElement).toBeInTheDocument();
+    buttonElement.click();
+    const subredditsElement = screen.getByText(/reactjs/i);
+    expect(subredditsElement).toBeInTheDocument();
+  });
+});
 
+describe('App component', () => {
+  beforeEach(() => {
+    global.innerWidth = 640;
+    global.dispatchEvent(new Event('resize'));
+  });
+
+  it('hides subreddits container on small screens on initial render', () => {
+    render(
+      <Provider store={store}>
+        <App />
+      </Provider>
+    );
+
+    // Проверяем, что контейнер сабреддитов отсутствует
+    const subredditsElement = screen.queryByText(/reactjs/i);
+    expect(subredditsElement).not.toBeInTheDocument();
+  });
 });

@@ -66,7 +66,7 @@ const Header = ({ toggleSubreddits, onSelectSubreddit }) => {
         animate={{ rotate: isRotated ? 180 : 0 }}
         transition={{ type: "spring" }}
       >
-        <button className="button-hide" onClick={handleClick}>
+        <button className="button-hide" onClick={handleClick} data-testid="button-hide">
           <TfiAlignJustify />
         </button>
       </motion.div>
