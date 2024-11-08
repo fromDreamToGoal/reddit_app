@@ -5,6 +5,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import App from '../App';
 import redditReducer from '../store/redditSlice'; 
 import subredditsReducer from '../store/subRedditSlice'; 
+import userEvent from '@testing-library/user-event';
 
 // Настройка mock store с redux-thunk
 const store = configureStore({
@@ -71,6 +72,21 @@ describe('App', () => {
     buttonElement.click();
     const subredditsElement = screen.getByText(/reactjs/i);
     expect(subredditsElement).toBeInTheDocument();
+  });
+  it('sets selected subreddit on handleSubredditSelection', async () => {
+    render(
+      <Provider store={store}>
+        <App />
+      </Provider>
+    );
+
+    // Ищем и кликаем по кнопке сабреддита с data-testid
+    const subredditButton = await screen.findByTestId('home-button');
+    userEvent.click(subredditButton);
+
+    // Проверяем состояние selectedSubreddit в redditSlice
+    const state = store.getState();
+    expect(state.reddit.selectedSubreddit).toBe('Home');
   });
 });
 

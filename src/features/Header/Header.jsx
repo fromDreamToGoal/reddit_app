@@ -39,7 +39,7 @@ const Header = ({ toggleSubreddits, onSelectSubreddit }) => {
   return (
     <header className="header">
       {/* Логотип и название */}
-      <div className="logo-container" onClick={() => handleHomeClick()}>
+      <div className="logo-container" onClick={() => handleHomeClick()} data-testid="home-button">
         <img
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnee_YMBs_jzSmWDkrWkreR8Uc9RS-2kTgzw&s"
           alt="Reddit Logo"
