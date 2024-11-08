@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './features/Header/Header.jsx';
 import Main from './features/Main/Main.jsx';
 import Subreddits from './features/Subreddits/Subreddits.jsx';
@@ -8,6 +8,13 @@ import './App.css';
 function App() {
   const [isSubredditsVisible, setIsSubredditsVisible] = useState(true);
   const [selectedSubreddit, setSelectedSubreddit] = useState(null); // Состояние для выбранного сабреддита
+
+  useEffect(() => {
+    // Проверяем ширину экрана при первой загрузке 
+    if (window.innerWidth < 650) {  
+      setIsSubredditsVisible(false); // Скрываем сабреддиты на узких экранах
+    }
+  }, []);
 
   const toggleSubreddits = () => {
     setIsSubredditsVisible((prev) => !prev);
@@ -24,7 +31,10 @@ function App() {
           className="header" 
           toggleSubreddits={toggleSubreddits}
           onSelectSubreddit={handleSubredditSelection} />  
-        <Main className='main' />
+        <div className='main'>
+          <Main className="main" />
+          {isSubredditsVisible && <div className="overlay" />}
+        </div>
         {isSubredditsVisible && 
         <Subreddits 
           className='subreddits' 
@@ -34,6 +44,6 @@ function App() {
       </div>
     </SubredditProvider>
   );
-}
+};
 
 export default App;

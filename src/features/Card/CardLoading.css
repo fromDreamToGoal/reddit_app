@@ -8,6 +8,7 @@
     margin-bottom: 15px;
     animation: skeleton-loading 1.2s infinite ease-in-out;
     margin: 2rem;
+    overflow: hidden;
   }
   
   .vote-section-loading {

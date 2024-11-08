@@ -6,6 +6,18 @@
     border-radius: 1rem;
 }
 
+@media (max-width: 425px) {
+    .subreddits-container {
+      position: absolute;
+      top: 5rem;
+      left: 50%; /* Центруем относительно левого края */
+      transform: translateX(-50%); /* Смещаем на 50% ширины для центрирования */
+      width: 80%; /* Задаем ширину контейнера */
+      box-shadow: 0 0 20px rgb(13 199 182 / 89%);
+      background-color: #2e2e3eed;
+    }
+}
+
 .subreddits-header {
     display: flex;
     align-items: center;
