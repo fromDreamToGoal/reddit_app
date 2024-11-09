@@ -1,70 +1,77 @@
-# Getting Started with Create React App
+# Reddit na minimalkakh
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Reddit na minimalkakh is a web application that allows users to explore subreddits, view posts and their comments, easily switch between topics, and perform searches. Built with **React**, **Redux**, and the **Reddit API**, the app is optimized for both mobile and desktop devices.
 
-## Available Scripts
+## Key Features
 
-In the project directory, you can run:
++ **View Posts**: Browse top posts from various subreddits.
++ **Comments**: Load and view comments for each post.
++ **Search**: Dynamic search that updates content based on the query.
 
-### `npm start`
+### Technologies
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
++ **React**: Provides the framework for building the user interface.
++ **Redux**: Manages application state and facilitates data flow between components.
++ **Redux Thunk**: Handles asynchronous API requests.
++ **React Testing Library & Jest**: Used for unit testing to validate core functionality.
++ **Reddit API**: Supplies data on posts, comments, and subreddits.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation and Setup
 
-### `npm test`
+1. **Clone the Repository**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    1. [https://github.com/fromDreamToGoal/reddit_app.git](https://github.com/fromDreamToGoal/reddit_app.git)
 
-### `npm run build`
+    1. `cd reddit_app`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Install Dependencies**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    #### `npm install`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. **Start the App in Development Mode**
 
-### `npm run eject`
+    #### `npm start`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4. **Build for Production**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    #### `npm run build`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## **Testing**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Run All Tests
+    npm test
 
-## Learn More
+### Run Tests with Coverage Report
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    To run tests with a coverage report:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    npm test -- --coverage
 
-### Code Splitting
+## Project Structure 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+        src
+    ├── components
+    │   ├── Header.jsx       # Header with search
+    │   ├── Main.jsx         # Main section displaying posts
+    │   ├── Subreddits.jsx   # Subreddits list
+    │   └── Card.jsx         # Card for displaying post details
+    ├── features
+    │   ├── redditSlice.js   # Reducer for handling Reddit API data
+    │   ├── subRedditSlice.js# Reducer for subreddits
+    ├── store
+    │   └── index.js         # Redux store configuration
+    └── utils
+        └── reddit.js        # Utility functions for Reddit API interactions
 
-### Analyzing the Bundle Size
+## Development Highlights
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1.	**API**: Data is fetched from the Reddit API to display current posts and comments. This included addressing CORS issues and creating an error-handling component for retrying requests.
 
-### Making a Progressive Web App
+2.	**Component Structure**: Components are organized by function and purpose in the interface. The Card component displays basic post information, while Main acts as a container for displaying the current posts.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+3.	**Animations**: Smooth transitions are added to show and hide subreddits, along with a fog overlay effect that activates when the subreddit menu is rendered.
 
-### Advanced Configuration
+4.	**Testing**: Tests cover each primary component, including visibility toggling for subreddits and interaction functions such as toggleSubreddits and handleSubredditSelection.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## **Author**
+    Serhii Holovenko
