@@ -77,11 +77,11 @@ const Card = ({ post, subreddit, onFetchComments }) => {
         <div className="card">
       {/* Счётчик голосов */}
       <div className="vote-section">
-        <button className={upvoteClass} onClick={handleUpvote}>
+        <button className={upvoteClass} onClick={handleUpvote} data-testid='upvote-button'>
           {voteStatus === 'upvoted' ? <BsHandThumbsUpFill /> : <BsHandThumbsUp />}
         </button>
-        <div className={voteCountClass}>{voteCount}</div>
-        <button className={downvoteClass} onClick={handleDownvote}>
+        <div className={voteCountClass} data-testid="vote-count">{voteCount}</div>
+        <button className={downvoteClass} onClick={handleDownvote} data-testid='downvote-button'>
           {voteStatus === 'downvoted' ? <BsHandThumbsDownFill /> : <BsHandThumbsDown />}
         </button>
       </div>
@@ -103,7 +103,6 @@ const Card = ({ post, subreddit, onFetchComments }) => {
             <div className="user-info">
             <img 
               src={getRandomAvatar()} // Случайная аватарка по умолчанию
-              onError={(e) => { e.target.src = getRandomAvatar(); }} // Стандартная аватарка при ошибке
               alt="User avatar"
               className="user-avatar"
             />
@@ -114,6 +113,7 @@ const Card = ({ post, subreddit, onFetchComments }) => {
              <button 
                 className={`comment-button ${isClicked ? 'clicked' : ''}`}
                 onClick={toggleCommentButton}
+                data-testid='comment-button'
              >
                 {isClicked ? <TbMessageCircleFilled /> : <TbMessageCircle />} {post.comments}
               </button>
@@ -129,7 +129,7 @@ const Card = ({ post, subreddit, onFetchComments }) => {
                 </> 
                 ) : (
                   comments.map((comment) => (
-                    <div key={comment.id} className="comment" id='box'>
+                    <div key={comment.id} className="comment" id='box' data-testid="comments-section">
                       <div className="comment-author">{comment.author}</div>
                       <div className="comment-body">{comment.body}</div>
                       <div className="comment-date">{calculatePostDate(comment.created)}</div>
