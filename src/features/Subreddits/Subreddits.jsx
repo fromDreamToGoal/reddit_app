@@ -17,6 +17,7 @@ const Subreddits = ({ selectedSubreddit, onSelectSubreddit, toggleSubreddits }) 
     // Проверяем, есть ли уже сабреддиты в состоянии
     if (!subreddits || subreddits.length === 0) {
       dispatch(fetchSubreddits()); // Запрашиваем сабреддиты, если их нет
+      console.log('Запрашиваем сабреддиты');
     }
   }, [dispatch, subreddits]);
 

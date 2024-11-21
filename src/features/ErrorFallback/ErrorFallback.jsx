@@ -15,7 +15,7 @@ const ErrorFallback = () => {
     <div className="error-fallback">
       <h3>Oops! Something went wrong.</h3>
       <p>We couldn't load the posts. Please try again.</p>
-      <button onClick={handleClick} className="retry-button">Retry</button>
+      <button onClick={handleClick} className="retry-button" data-testid="go-home-button">Go Home</button>
     </div>
   );
 };
